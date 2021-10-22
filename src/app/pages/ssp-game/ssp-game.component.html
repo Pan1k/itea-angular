@@ -1,0 +1,10 @@
+<div class="result-window">
+  <div *ngIf="!isGameStarted">Сделайте свой выбор</div>
+  <div *ngIf="isGameStarted">{{gameResult}}</div>
+  <div *ngIf="isGameStarted">AI выбрал {{getTitle(AIChoice)}}</div>
+</div>
+<div class="ssp-game-buttons">
+  <button (click)="userButtonClickHandler(0)">{{getTitle(0)}}</button>
+  <button (click)="userButtonClickHandler(1)">{{getTitle(1)}}</button>
+  <button (click)="userButtonClickHandler(2)">{{getTitle(2)}}</button>
+</div>
