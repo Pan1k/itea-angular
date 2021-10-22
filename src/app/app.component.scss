@@ -6,27 +6,28 @@
 
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex: none;
   padding: 8px 20px;
+  box-shadow: 0 0 4px #333;
 
   .logo-link {
     font-size: 20px;
     color: #333;
     text-decoration: none;
+    text-transform: uppercase;
   }
 }
 
 section {
   flex: 1 1 auto;
-  background-color: green;
 }
 
 footer {
   flex: none;
   height: 40px;
   padding: 8px 20px;
+  border-top: 1px solid #eee;
 
   p {
     font-size: 12px;
