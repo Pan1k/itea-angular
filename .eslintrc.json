@@ -37,6 +37,7 @@
         ],
         "no-duplicate-imports": ["error", { "includeExports": true }],
         "max-len": ["error", { "code": 120 }],
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
         "no-alert": "warn"
       }
     },
@@ -47,7 +48,9 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+        "quotes": ["error", "single"]
+      }
     }
   ]
 }
