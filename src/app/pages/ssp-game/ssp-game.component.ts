@@ -5,7 +5,7 @@ interface IWinsArr {
 }
 
 interface IGameResults {
-  time: string,
+  time: any,
   result: string,
   userChoice: number,
   aiChoice: number,
@@ -70,9 +70,14 @@ export class SspGameComponent implements OnInit {
     return Math.floor(Math.random() * 3);
   }
 
+  getResultClass(val: string): string {
+    return (val === 'Ничья') ? '' : (val === 'Вы победили!!!') ? 'win' : 'lose';
+  }
+
   saveResult(): void {
+    let date = new Date().toLocaleString();
     let result: IGameResults = {
-      time: "10:00",
+      time: date,
       result: this.gameResult,
       userChoice: this.AIChoice,
       aiChoice: this.userChoice,

@@ -8,13 +8,13 @@
       <div class="history-list">
         <div class="history-list__item" *ngFor="let item of gameResults">
           <div>
-            <span>{{item.time}}</span>
-            <span>{{getTitle(item.userChoice)}}</span>
+            <span class="time">{{item.time}}</span>
+            <span class="choice">{{getTitle(item.userChoice)}}</span>
           </div>
           <div class="middle">{{item.score}}</div>
           <div>
-            <span>{{item.result}}</span>
-            <span>{{getTitle(item.aiChoice)}}</span>
+            <span class="result {{getResultClass(item.result)}}">{{item.result}}</span>
+            <span class="choice">{{getTitle(item.aiChoice)}}</span>
           </div>
         </div>
       </div>
