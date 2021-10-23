@@ -1,15 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 
+interface IWinsArr {
+  [index: number]: number[];
+}
+
+interface IGameResults {
+  time: string,
+  result: string,
+  userChoice: number,
+  aiChoice: number,
+  score: string
+}
+
 @Component({
   selector: 'app-ssp-game',
   templateUrl: './ssp-game.component.html',
   styleUrls: ['./ssp-game.component.scss']
 })
+
 export class SspGameComponent implements OnInit {
+  winsMatrix: IWinsArr = {
+    0: [1],
+    1: [2],
+    2: [0]
+  }
   gameElems = ['Камень', 'Ножницы', 'Бумага'];
+  gameResults: Array<IGameResults> = [];
   isGameStarted: boolean = false;
   AIChoice: number = 0;
+  userChoice: number = 0;
   gameResult: string = '';
+  userScore: number = 0;
+  aiScore: number = 0;
 
   constructor() {
   }
@@ -25,21 +47,41 @@ export class SspGameComponent implements OnInit {
   userButtonClickHandler(val: number): void {
     this.isGameStarted = true;
     this.AIChoice = this.AISelectEvent();
-    this.showResult(val);
+    this.userChoice = val;
+    this.showResult();
   }
 
-  showResult(val: number) {
-    if(val === this.AIChoice) {
+  showResult() {
+    if(this.userChoice === this.AIChoice) {
       this.gameResult = 'Ничья'
-    } else if (val < this.AIChoice) {
-      this.gameResult = 'Вы победили!!!'
     } else {
-      this.gameResult = 'Вы проиграли =('
+      if (this.winsMatrix[this.userChoice].includes(this.AIChoice)) {
+        this.gameResult = 'Вы победили!!!'
+        ++this.userScore;
+      } else {
+        this.gameResult = 'Вы проиграли =('
+        ++this.aiScore;
+      }
     }
+    this.saveResult();
   }
 
   AISelectEvent(): number {
     return Math.floor(Math.random() * 3);
+  }
+
+  saveResult(): void {
+    let result: IGameResults = {
+      time: "10:00",
+      result: this.gameResult,
+      userChoice: this.AIChoice,
+      aiChoice: this.userChoice,
+      score: `${this.userScore}:${this.aiScore}`
+    }
+    this.gameResults = [
+      result,
+      ...this.gameResults
+    ]
   }
 
 }

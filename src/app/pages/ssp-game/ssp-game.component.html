@@ -1,10 +1,35 @@
-<div class="result-window">
-  <div *ngIf="!isGameStarted">Сделайте свой выбор</div>
-  <div *ngIf="isGameStarted">{{gameResult}}</div>
-  <div *ngIf="isGameStarted">AI выбрал {{getTitle(AIChoice)}}</div>
-</div>
-<div class="ssp-game-buttons">
-  <button (click)="userButtonClickHandler(0)">{{getTitle(0)}}</button>
-  <button (click)="userButtonClickHandler(1)">{{getTitle(1)}}</button>
-  <button (click)="userButtonClickHandler(2)">{{getTitle(2)}}</button>
+<div class="game-frame">
+  <div class="result-window">
+    <div class="result-window__score">
+      <span>User Score</span>
+      {{userScore}}
+    </div>
+    <div class="result-window__main">
+      <div class="history-list">
+        <div class="history-list__item" *ngFor="let item of gameResults">
+          <div>
+            <span>{{item.time}}</span>
+            <span>{{getTitle(item.userChoice)}}</span>
+          </div>
+          <div class="middle">{{item.score}}</div>
+          <div>
+            <span>{{item.result}}</span>
+            <span>{{getTitle(item.aiChoice)}}</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isGameStarted">Сделайте свой выбор</div>
+      <div *ngIf="isGameStarted">{{gameResult}}</div>
+      <div *ngIf="isGameStarted">AI выбрал {{getTitle(AIChoice)}}</div>
+    </div>
+    <div class="result-window__score">
+      <span>AI Score</span>
+      {{aiScore}}
+    </div>
+  </div>
+  <div class="game-frame-buttons">
+    <button (click)="userButtonClickHandler(0)">{{getTitle(0)}}</button>
+    <button (click)="userButtonClickHandler(1)">{{getTitle(1)}}</button>
+    <button (click)="userButtonClickHandler(2)">{{getTitle(2)}}</button>
+  </div>
 </div>
