@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!isGameStarted">Сделайте свой выбор</div>
+      <div *ngIf="!isGameStarted" class="message">Сделайте свой выбор</div>
       <div *ngIf="isGameStarted" class="result {{getResultClass(gameResult)}}">{{gameResultPhrases[gameResult]}}</div>
       <div *ngIf="isGameStarted" class="choice">AI выбрал {{getTitle(AIChoice)}}</div>
     </div>
