@@ -33,7 +33,25 @@
   }
 
   &__main {
-      flex: 1 1 auto;
+    flex: 1 1 auto;
+
+    & > .result {
+      text-align: center;
+      font-size: 24px;
+
+      &.win {
+        color: green;
+      }
+
+      &.lose {
+        color: red;
+      }
+    }
+
+    & > .choice {
+      text-align: center;
+      font-size: 14px;
+    }
   }
 
   .history-list {

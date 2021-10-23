@@ -6,7 +6,7 @@ interface IWinsArr {
 
 interface IGameResults {
   time: any,
-  result: string,
+  result: number,
   userChoice: number,
   aiChoice: number,
   score: string
@@ -24,12 +24,13 @@ export class SspGameComponent implements OnInit {
     1: [2],
     2: [0]
   }
+  gameResultPhrases = ['Ничья', 'Вы победили!!!', 'Вы проиграли =('];
   gameElems = ['Камень', 'Ножницы', 'Бумага'];
   gameResults: Array<IGameResults> = [];
   isGameStarted: boolean = false;
   AIChoice: number = 0;
   userChoice: number = 0;
-  gameResult: string = '';
+  gameResult: number = 0;
   userScore: number = 0;
   aiScore: number = 0;
 
@@ -44,6 +45,10 @@ export class SspGameComponent implements OnInit {
     return this.gameElems[id];
   }
 
+  getResultClass(val: number): string {
+    return (val === 0) ? '' : (val === 1) ? 'win' : 'lose';
+  }
+
   userButtonClickHandler(val: number): void {
     this.isGameStarted = true;
     this.AIChoice = this.AISelectEvent();
@@ -51,16 +56,16 @@ export class SspGameComponent implements OnInit {
     this.showResult();
   }
 
-  showResult() {
+  showResult(): void {
     if(this.userChoice === this.AIChoice) {
-      this.gameResult = 'Ничья'
+      this.gameResult = 0
     } else {
       if (this.winsMatrix[this.userChoice].includes(this.AIChoice)) {
-        this.gameResult = 'Вы победили!!!'
-        ++this.userScore;
+        this.gameResult = 1
+        this.userScore++;
       } else {
-        this.gameResult = 'Вы проиграли =('
-        ++this.aiScore;
+        this.gameResult = 2
+        this.aiScore++;
       }
     }
     this.saveResult();
@@ -68,10 +73,6 @@ export class SspGameComponent implements OnInit {
 
   AISelectEvent(): number {
     return Math.floor(Math.random() * 3);
-  }
-
-  getResultClass(val: string): string {
-    return (val === 'Ничья') ? '' : (val === 'Вы победили!!!') ? 'win' : 'lose';
   }
 
   saveResult(): void {
