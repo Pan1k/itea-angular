@@ -80,8 +80,8 @@ export class SspGameComponent implements OnInit {
     let result: IGameResults = {
       time: date,
       result: this.gameResult,
-      userChoice: this.AIChoice,
-      aiChoice: this.userChoice,
+      userChoice: this.userChoice,
+      aiChoice: this.AIChoice,
       score: `${this.userScore}:${this.aiScore}`
     }
     this.gameResults = [
