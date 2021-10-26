@@ -7,13 +7,15 @@ import { FaqComponent } from './pages/faq/faq.component';
 
 import { MainMenuComponent } from './blocks/main-menu/main-menu.component';
 import { SspGameComponent } from './pages/ssp-game/ssp-game.component';
+import { UlListComponent } from './shared/ul-list/ul-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FaqComponent,
     MainMenuComponent,
-    SspGameComponent
+    SspGameComponent,
+    UlListComponent
   ],
   imports: [
     BrowserModule,

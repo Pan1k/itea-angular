@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONSTANTS } from "./faq.constants";
 
 @Component({
   selector: 'app-faq',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaqComponent implements OnInit {
 
+  lessons = CONSTANTS.LESSONS;
+
   constructor() {
   }
 
   ngOnInit(): void {
     console.log('FaqComponent');
+  }
+
+  checkForObject(el: string | object) {
+    console.log('dddd', el, typeof el);
+    return typeof el === 'object';
   }
 
 }

@@ -5,7 +5,7 @@ interface IWinsArr {
 }
 
 interface IGameResults {
-  time: any,
+  time: string,
   result: number,
   userChoice: number,
   aiChoice: number,
@@ -27,12 +27,12 @@ export class SspGameComponent implements OnInit {
   gameResultPhrases = ['Ничья', 'Вы победили!!!', 'Вы проиграли =('];
   gameElems = ['Камень', 'Ножницы', 'Бумага'];
   gameResults: Array<IGameResults> = [];
-  isGameStarted: boolean = false;
-  AIChoice: number = 0;
-  userChoice: number = 0;
-  gameResult: number = 0;
-  userScore: number = 0;
-  aiScore: number = 0;
+  isGameStarted = false;
+  AIChoice = 0;
+  userChoice = 0;
+  gameResult = 0;
+  userScore = 0;
+  aiScore = 0;
 
   constructor() {
   }
@@ -58,13 +58,13 @@ export class SspGameComponent implements OnInit {
 
   showResult(): void {
     if(this.userChoice === this.AIChoice) {
-      this.gameResult = 0
+      this.gameResult = 0;
     } else {
       if (this.winsMatrix[this.userChoice].includes(this.AIChoice)) {
-        this.gameResult = 1
+        this.gameResult = 1;
         this.userScore++;
       } else {
-        this.gameResult = 2
+        this.gameResult = 2;
         this.aiScore++;
       }
     }
