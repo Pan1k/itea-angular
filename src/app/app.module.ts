@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FaqComponent } from './pages/faq/faq.component';
 
-import { MainMenuComponent } from './blocks/main-menu/main-menu.component';
 import { SspGameComponent } from './pages/ssp-game/ssp-game.component';
 import { UlListComponent } from './shared/ul-list/ul-list.component';
+import { MainMenuComponent } from './shared/main-menu/main-menu.component';
+import { MainMenuItemComponent } from './shared/main-menu/main-menu-item/main-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UlListComponent } from './shared/ul-list/ul-list.component';
     FaqComponent,
     MainMenuComponent,
     SspGameComponent,
-    UlListComponent
+    UlListComponent,
+    MainMenuItemComponent
   ],
   imports: [
     BrowserModule,
