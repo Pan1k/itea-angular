@@ -6,7 +6,9 @@
         *ngIf="checkForObject(lesson.answer); else elseNotObject"
         [ul-list]="lesson.answer"
       ></app-ul-list>
-      <ng-template #elseNotObject>{{lesson.answer}}</ng-template>
+      <ng-template #elseNotObject>
+        <p [innerHTML]="lesson.answer"></p>
+      </ng-template>
     </dd>
   </dl>
 </div>

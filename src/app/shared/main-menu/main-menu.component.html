@@ -1,0 +1,7 @@
+<nav>
+  <ul>
+    <ng-container *ngFor="let item of menuItems">
+      <app-main-menu-item link="{{item.link}}" title="{{item.title}}"></app-main-menu-item>
+    </ng-container>
+  </ul>
+</nav>
