@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CONSTANTS } from "./faq.constants";
 
+interface ILesson {
+  lesson: number,
+  question: string,
+  answer: string | object;
+}
+
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
@@ -8,9 +14,10 @@ import { CONSTANTS } from "./faq.constants";
 })
 export class FaqComponent implements OnInit {
 
-  lessons = CONSTANTS.LESSONS;
+  lessons: Array<ILesson>;
 
   constructor() {
+    this.lessons = CONSTANTS.LESSONS;
   }
 
   ngOnInit(): void {
@@ -18,7 +25,6 @@ export class FaqComponent implements OnInit {
   }
 
   checkForObject(el: string | object) {
-    console.log('dddd', el, typeof el);
     return typeof el === 'object';
   }
 

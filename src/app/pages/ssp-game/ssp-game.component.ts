@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONSTANTS } from './ssp-game.constants';
 
 interface IWinsArr {
   [index: number]: number[];
@@ -20,12 +21,20 @@ interface IGameResults {
 
 export class SspGameComponent implements OnInit {
   winsMatrix: IWinsArr = {
-    0: [1],
-    1: [2],
-    2: [0]
+    0: [CONSTANTS.SCISSORS_ID, CONSTANTS.LIZARD_ID],
+    1: [CONSTANTS.PAPER_ID, CONSTANTS.LIZARD_ID],
+    2: [CONSTANTS.STONE_ID, CONSTANTS.SPOK_ID],
+    3: [CONSTANTS.PAPER_ID, CONSTANTS.SPOK_ID],
+    4: [CONSTANTS.SCISSORS_ID, CONSTANTS.STONE_ID]
   }
   gameResultPhrases = ['Ничья', 'Вы победили!!!', 'Вы проиграли =('];
-  gameElems = ['Камень', 'Ножницы', 'Бумага'];
+  gameElems = [
+    CONSTANTS.STONE_TITLE,
+    CONSTANTS.SCISSORS_TITLE,
+    CONSTANTS.PAPER_TITLE,
+    CONSTANTS.LIZARD_TITLE,
+    CONSTANTS.SPOK_TITLE
+  ];
   gameResults: Array<IGameResults> = [];
   isGameStarted = false;
   AIChoice = 0;
@@ -72,7 +81,7 @@ export class SspGameComponent implements OnInit {
   }
 
   AISelectEvent(): number {
-    return Math.floor(Math.random() * 3);
+    return Math.floor(Math.random() * this.gameElems.length);
   }
 
   saveResult(): void {
