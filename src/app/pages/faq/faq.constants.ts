@@ -124,6 +124,26 @@ export const CONSTANTS = {
         'где minIntegerDigits - минимальное количество цифр в целой части minFractionDigits - минимальное количество ' +
         'цифр в дробной части maxFractionDigits - максимальное количество цифр в дробной части <br> - locale: код ' +
         'применяемой культуры'
+    },
+    {
+      lesson: 4,
+      question: 'Why should we use getter and setter instead of just setting the variable in the service?',
+      answer: ''
+    },
+    {
+      lesson: 4,
+      question: 'How to set a default value for @Input() property?',
+      answer: ''
+    },
+    {
+      lesson: 4,
+      question: 'What is the difference between @ViewChild() і @ContentChild()?',
+      answer: ''
+    },
+    {
+      lesson: 4,
+      question: 'Why do we add providedIn: ‘root’?',
+      answer: ''
     }
   ]
 }

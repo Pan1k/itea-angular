@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CONSTANTS } from "./faq.constants";
-
-interface ILesson {
-  lesson: number,
-  question: string,
-  answer: string | object;
-}
+import { CONSTANTS } from './faq.constants';
+import { ILesson } from './faq.interface';
 
 @Component({
   selector: 'app-faq',
@@ -15,9 +10,11 @@ interface ILesson {
 export class FaqComponent implements OnInit {
 
   lessons: Array<ILesson>;
+  filterLesson: number;
 
   constructor() {
     this.lessons = CONSTANTS.LESSONS;
+    this.filterLesson = 0;
   }
 
   ngOnInit(): void {
@@ -26,6 +23,10 @@ export class FaqComponent implements OnInit {
 
   checkForObject(el: string | object) {
     return typeof el === 'object';
+  }
+
+  changeFiltrationClick(id: number): void {
+    this.filterLesson = id;
   }
 
 }
