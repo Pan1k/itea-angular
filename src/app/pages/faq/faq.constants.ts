@@ -128,22 +128,33 @@ export const CONSTANTS = {
     {
       lesson: 4,
       question: 'Why should we use getter and setter instead of just setting the variable in the service?',
-      answer: ''
+      answer: 'Геттеры и сеттеры это специальные функции которые используются для управляемого доступа к состоянию' +
+        'обьекта. Для лучшего контроля над свойством его делают приватным, а запись значения осуществляется через ' +
+        'специальный метод, который называют «сеттер». Для того, чтобы дать возможность внешнему коду узнать его ' +
+        'значение, создадим специальную функцию – «геттер» (getter method).'
     },
     {
       lesson: 4,
       question: 'How to set a default value for @Input() property?',
-      answer: ''
+      answer: '@Input() foo: string = \'bar\';'
     },
     {
       lesson: 4,
-      question: 'What is the difference between @ViewChild() і @ContentChild()?',
-      answer: ''
+      question: 'What is the difference between @ViewChild() and @ContentChild()?',
+      answer: '<b>Shadow DOM</b> - это внутренняя модель DOM вашего компонента, которая определяется вами (как ' +
+        'создателем компонента) и скрыта от конечного пользователя.\n' +
+        '<b>Light DOM</b> - это модель DOM, которую конечный пользователь вашего компонента добавляет в ваш компонент.\n' +
+        'Разница между @ViewChildren и @ContentChildren заключается в том, что @ViewChildren ищет элементы в ' +
+        'Shadow DOM, а @ContentChildren ищет их в Light DOM.'
     },
     {
       lesson: 4,
       question: 'Why do we add providedIn: ‘root’?',
-      answer: ''
+      answer: 'Это самый распространенный вариант внедрения зависимостей. В данном случае сервис будет добавлен в бандл ' +
+        'приложение только если он реально используется, т.е. внедрен в компонент или другой сервис. Раньше все сервисы ' +
+        'библиотеки необходимо было добавить в providers:[] её модуля. После импорта библиотеки в приложение в бандл ' +
+        'добавлялись все сервисы, даже если использовался только один. В случае с providedIn: \'root\' нет ' +
+        'необходимости подключать модуль библиотеки. Достаточно просто внедрить сервис в нужный компонент.'
     }
   ]
 }
