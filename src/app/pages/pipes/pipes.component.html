@@ -1,4 +1,9 @@
-<div>
+<app-form-block [title]="'Reverse string PIPE'">
   <input type="text" (input)="changeTextValue($event)" />
-  <p>{{textValue | textReverse: 5}}</p>
-</div>
+  <input type="number" (input)="changeCountToReverse($event)" min="0" max="20" />
+  <p>{{textValue | textReverse: countLettersToReverse}}</p>
+</app-form-block>
+
+<app-form-block [title]="'Positive numbers Directive'">
+  <input type="text" [appPipes]="typedValue" [(ngModel)]="typedValue" />
+</app-form-block>

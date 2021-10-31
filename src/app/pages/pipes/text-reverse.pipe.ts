@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TextReversePipe implements PipeTransform {
 
-  transform(value: string, arg: number = 0): unknown {
+  transform(value: string, arg: number = 0): string {
 
     if(arg >= 2) {
       let slicedStr = value.slice(0, arg);

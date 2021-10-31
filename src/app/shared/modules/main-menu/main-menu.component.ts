@@ -18,7 +18,8 @@ export class MainMenuComponent implements OnInit {
     this.menuItems = [
       { link: '/faq', title: 'FAQ' },
       { link: '/ssp-game', title: 'SSP-Game' },
-      { link: '/pipes', title: 'Pipes' }
+      { link: '/pipes', title: 'Pipes' },
+      { link: '/books-list', title: 'Books list' }
     ]
   }
 

@@ -14,6 +14,9 @@ import { FilterByLessonPipe } from './pages/faq/filter-by-lesson.pipe';
 import { IteaButtonComponent } from './shared/elements/itea-button/itea-button.component';
 import { PipesComponent } from './pages/pipes/pipes.component';
 import { TextReversePipe } from './pages/pipes/text-reverse.pipe';
+import { PipesDirective } from './pages/pipes/pipes.directive';
+import { FormBlockComponent } from './pages/pipes/form-block/form-block.component';
+import { BooksListComponent } from './pages/books-list/books-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { TextReversePipe } from './pages/pipes/text-reverse.pipe';
     FilterByLessonPipe,
     IteaButtonComponent,
     PipesComponent,
-    TextReversePipe
+    TextReversePipe,
+    PipesDirective,
+    FormBlockComponent,
+    BooksListComponent
   ],
   imports: [
     BrowserModule,
