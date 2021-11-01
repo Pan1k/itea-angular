@@ -17,6 +17,7 @@ import { TextReversePipe } from './pages/pipes/text-reverse.pipe';
 import { PipesDirective } from './pages/pipes/pipes.directive';
 import { FormBlockComponent } from './pages/pipes/form-block/form-block.component';
 import { BooksListComponent } from './pages/books-list/books-list.component';
+import { BooksListItemComponent } from './pages/books-list/books-list-item/books-list-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BooksListComponent } from './pages/books-list/books-list.component';
     TextReversePipe,
     PipesDirective,
     FormBlockComponent,
-    BooksListComponent
+    BooksListComponent,
+    BooksListItemComponent
   ],
   imports: [
     BrowserModule,

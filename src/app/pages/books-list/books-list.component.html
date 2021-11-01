@@ -1,1 +1,5 @@
-<p>books-list works!</p>
+<div class="books-list">
+  <ng-container *ngFor="let item of booksList">
+    <app-books-list-item [book]="item"></app-books-list-item>
+  </ng-container>
+</div>

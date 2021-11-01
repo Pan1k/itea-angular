@@ -12,7 +12,7 @@ export class PipesDirective {
     this.typedValue = '';
   }
 
-  @HostListener('input') onKeyPress () {
+  @HostListener('input') onInputChange () {
     console.log(this.typedValue);
     this.keyPressEventHandler();
   }
