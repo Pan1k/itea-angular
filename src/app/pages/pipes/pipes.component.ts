@@ -28,5 +28,4 @@ export class PipesComponent implements OnInit {
     this.countLettersToReverse = e.target.value < 0 ? 0 : e.target.value;
   }
 
-
 }
