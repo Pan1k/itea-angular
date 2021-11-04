@@ -7,7 +7,7 @@ export class TextReversePipe implements PipeTransform {
 
   transform(value: string, arg: number = 0): string {
 
-    if(arg >= 2) {
+    if(arg >= 1) {
       let slicedStr = value.slice(0, arg);
       let leftStr = value.slice(arg);
       return `${slicedStr.split('').reverse().join('')}${leftStr}`;

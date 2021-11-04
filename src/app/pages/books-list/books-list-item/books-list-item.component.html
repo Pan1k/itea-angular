@@ -1,9 +1,14 @@
 <div class="book-item">
-  <div class="img">
+  <div class="book-item__img">
     <img [src]="book.img" [alt]="book.title" />
   </div>
-  <h5>{{book.id}}, {{book.title}}</h5>
-  <p>{{book.description}}</p>
-  <span>{{book.author}}</span>
-  <span>{{book.postInfo}}</span>
+  <h5 class="book-item__title">{{book.title}}</h5>
+  <div class="book-item__footer">
+    <span>{{book.author}}</span>
+    <span>{{book.postInfo}}</span>
+  </div>
+  <div class="book-item__actions">
+    <button>Edit</button>
+    <button (click)="deleteBook(book.id)">Delete</button>
+  </div>
 </div>

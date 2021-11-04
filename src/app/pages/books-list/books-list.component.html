@@ -1,5 +1,18 @@
+<ng-container *ngIf="isShowForm">
+  <app-books-list-form [bookIndex]="bookIndex" (onAddBook)="onAddBook($event)"></app-books-list-form>
+</ng-container>
+
+<div *ngIf="!isShowForm">
+  <button (click)="addBookForm()">Add</button>
+</div>
+
 <div class="books-list">
-  <ng-container *ngFor="let item of booksList">
-    <app-books-list-item [book]="item"></app-books-list-item>
+  <ng-container *ngFor="let item of booksList | orderBy">
+    <app-books-list-item
+      [book]="item"
+      [bookIndex]="bookIndex"
+      (onUpdateBook)="onUpdateBook($event)"
+      (onDeleteBook)="onDeleteBook($event)">
+    </app-books-list-item>
   </ng-container>
 </div>

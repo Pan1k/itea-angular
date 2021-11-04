@@ -155,6 +155,26 @@ export const CONSTANTS = {
         'библиотеки необходимо было добавить в providers:[] её модуля. После импорта библиотеки в приложение в бандл ' +
         'добавлялись все сервисы, даже если использовался только один. В случае с providedIn: \'root\' нет ' +
         'необходимости подключать модуль библиотеки. Достаточно просто внедрить сервис в нужный компонент.'
+    },
+    {
+      lesson: 5,
+      question: 'What kind of form is better for a big project?',
+      answer: ''
+    },
+    {
+      lesson: 5,
+      question: 'Describe component lifecycle hooks: OnInit, OnChanges, AfterViewInit',
+      answer: ''
+    },
+    {
+      lesson: 5,
+      question: 'Describe built-in validation in Angular',
+      answer: ''
+    },
+    {
+      lesson: 5,
+      question: 'What is formControl?',
+      answer: ''
     }
   ]
 }

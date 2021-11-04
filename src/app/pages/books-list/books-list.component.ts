@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBook } from './book.interface';
+import { IBook, IBookUpdate } from './book.interface';
 import { BooksListService } from './books-list.service';
 
 @Component({
@@ -10,12 +10,42 @@ import { BooksListService } from './books-list.service';
 export class BooksListComponent implements OnInit {
 
   booksList: Array<IBook>;
+  isShowForm = false;
+  bookIndex: number = 0;
 
   constructor(private booksListService: BooksListService) {
-    this.booksList = booksListService.getBooks;
+    this.booksList = this.booksListService.getBooks;
   }
 
   ngOnInit(): void {
   }
 
+  addBookForm() {
+    this.bookIndex = 0;
+    this.setFormVisibilityState();
+  }
+
+  setFormVisibilityState(state: boolean = true): void {
+    this.isShowForm = state;
+  }
+
+  updateBooksList() {
+    this.booksList = this.booksListService.getBooks;
+  }
+
+  onAddBook(book: IBook) {
+    this.booksListService.addBook = book;
+    this.updateBooksList();
+  }
+
+  onDeleteBook(id: number) {
+    this.booksListService.deleteBook = id;
+    this.updateBooksList();
+  }
+
+  onUpdateBook(data: IBookUpdate) {
+    this.booksListService.updateBook = data;
+    this.updateBooksList();
+
+  }
 }
