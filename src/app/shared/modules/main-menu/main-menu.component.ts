@@ -19,7 +19,9 @@ export class MainMenuComponent implements OnInit {
       { link: '/faq', title: 'FAQ' },
       { link: '/ssp-game', title: 'SSP-Game' },
       { link: '/pipes', title: 'Pipes' },
-      { link: '/books-list', title: 'Books list' }
+      { link: '/books-list', title: 'Books list' },
+      { link: '/forms', title: 'Forms' },
+      { link: '/users', title: 'Users' }
     ]
   }
 

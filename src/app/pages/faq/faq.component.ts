@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CONSTANTS } from './faq.constants';
-import { ILesson } from './faq.interface';
+import { ILesson } from "./faq.interface";
 
 @Component({
   selector: 'app-faq',

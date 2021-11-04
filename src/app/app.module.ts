@@ -21,6 +21,9 @@ import { BooksListItemComponent } from './pages/books-list/books-list-item/books
 import { PositiveNumbersDirective } from './pages/pipes/positive-numbers.directive';
 import { BooksListFormComponent } from './pages/books-list/books-list-form/books-list-form.component';
 import { OrderByPipe } from './pages/books-list/order-by.pipe';
+import { FormsComponent } from './pages/forms/forms.component';
+import { UsersComponent } from './pages/users/users.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -40,12 +43,15 @@ import { OrderByPipe } from './pages/books-list/order-by.pipe';
     BooksListItemComponent,
     PositiveNumbersDirective,
     BooksListFormComponent,
-    OrderByPipe
+    OrderByPipe,
+    FormsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
