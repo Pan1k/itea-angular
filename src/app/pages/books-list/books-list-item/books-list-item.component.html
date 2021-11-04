@@ -8,7 +8,7 @@
     <span>{{book.postInfo}}</span>
   </div>
   <div class="book-item__actions">
-    <button>Edit</button>
+    <button (click)="updateBook(book.id)">Edit</button>
     <button (click)="deleteBook(book.id)">Delete</button>
   </div>
 </div>

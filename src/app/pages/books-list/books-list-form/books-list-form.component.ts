@@ -1,18 +1,19 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { BooksListService } from '../books-list.service';
-import { IBook } from "../book.interface";
+import { IBook, IBookUpdate } from "../book.interface";
 
 @Component({
   selector: 'app-books-list-form',
   templateUrl: './books-list-form.component.html',
   styleUrls: ['./books-list-form.component.scss']
 })
-export class BooksListFormComponent implements OnInit {
+export class BooksListFormComponent implements OnInit, OnChanges {
 
   @Input() formOnSubmit: any;
-  @Input() bookIndex: number;
+  @Input() bookId: number;
 
   @Output() onAddBook = new EventEmitter<IBook>();
+  @Output() onUpdateBook = new EventEmitter<IBookUpdate>();
 
   booksList: Array<IBook>;
   book: IBook;
@@ -25,12 +26,16 @@ export class BooksListFormComponent implements OnInit {
   }
 
   constructor(private booksListService : BooksListService) {
-    this.bookIndex = 0;
+    this.bookId = 0;
     this.booksList = booksListService.getBooks;
-    this.book = this.bookIndex
-      ? this.booksList.filter(x => x.id === this.bookIndex)[0]
-      : this.newBook;
+    this.book = this.newBook;
     this.formOnSubmit = () => {};
+  }
+
+  ngOnChanges(): void {
+    this.book = this.bookId
+      ? this.booksList.filter(x => x.id === this.bookId)[0]
+      : this.newBook;
   }
 
   ngOnInit(): void {
@@ -47,8 +52,17 @@ export class BooksListFormComponent implements OnInit {
   }
 
   addBook() {
+    this.book.id = this.booksList.length + 1;
     this.formOnSubmit(false);
     this.onAddBook.emit(this.book);
+    this.clearBook();
+  }
+
+  updateBook() {
+    this.onUpdateBook.emit({
+      id: this.bookId,
+      book: this.book
+    });
     this.clearBook();
   }
 

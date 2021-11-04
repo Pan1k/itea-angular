@@ -1,0 +1,23 @@
+.edit-form {
+  box-shadow: 0 0 5px #333;
+  padding: 20px;
+  margin-bottom: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: 15px;
+    }
+  }
+
+  label {
+    width: 150px;
+  }
+
+  input {
+    padding: 5px 2px;
+  }
+}

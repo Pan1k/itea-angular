@@ -1,18 +1,26 @@
 <ng-container *ngIf="isShowForm">
-  <app-books-list-form [bookIndex]="bookIndex" (onAddBook)="onAddBook($event)"></app-books-list-form>
+  <app-books-list-form
+    [bookId]="bookIndex"
+    (onAddBook)="onAddBook($event)"
+    (onUpdateBook)="onUpdateBook($event)"
+  ></app-books-list-form>
 </ng-container>
 
 <div *ngIf="!isShowForm">
   <button (click)="addBookForm()">Add</button>
 </div>
 
-<div class="books-list">
+<div class="books-list" *ngIf="booksList.length; else elseBlock">
   <ng-container *ngFor="let item of booksList | orderBy">
     <app-books-list-item
       [book]="item"
       [bookIndex]="bookIndex"
-      (onUpdateBook)="onUpdateBook($event)"
-      (onDeleteBook)="onDeleteBook($event)">
-    </app-books-list-item>
+      (onShowEditForm)="onShowUpdate($event)"
+      (onDeleteBook)="onDeleteBook($event)"
+    ></app-books-list-item>
   </ng-container>
 </div>
+
+<ng-template #elseBlock>
+  <p>Books not found</p>
+</ng-template>

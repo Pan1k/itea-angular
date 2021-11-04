@@ -1,4 +1,4 @@
-<div>
+<div class="edit-form">
   <div>
     <label for="title">title</label>
     <input type="text" id="title" [(ngModel)]="book.title" />
@@ -15,5 +15,6 @@
     <label for="postInfo">postInfo</label>
     <input type="text" id="postInfo" [(ngModel)]="book.postInfo" />
   </div>
-  <button (click)="addBook()">Add</button>
+  <button *ngIf="bookId === 0" (click)="addBook()">Add</button>
+  <button *ngIf="bookId !== 0" (click)="updateBook()">Update</button>
 </div>

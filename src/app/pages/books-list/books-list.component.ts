@@ -25,6 +25,11 @@ export class BooksListComponent implements OnInit {
     this.setFormVisibilityState();
   }
 
+  onShowUpdate(id: number) {
+    this.bookIndex = id;
+    this.setFormVisibilityState();
+  }
+
   setFormVisibilityState(state: boolean = true): void {
     this.isShowForm = state;
   }
@@ -36,6 +41,7 @@ export class BooksListComponent implements OnInit {
   onAddBook(book: IBook) {
     this.booksListService.addBook = book;
     this.updateBooksList();
+    this.setFormVisibilityState(false);
   }
 
   onDeleteBook(id: number) {
@@ -46,6 +52,6 @@ export class BooksListComponent implements OnInit {
   onUpdateBook(data: IBookUpdate) {
     this.booksListService.updateBook = data;
     this.updateBooksList();
-
+    this.setFormVisibilityState(false);
   }
 }

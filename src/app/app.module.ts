@@ -19,6 +19,8 @@ import { FormBlockComponent } from './pages/pipes/form-block/form-block.componen
 import { BooksListComponent } from './pages/books-list/books-list.component';
 import { BooksListItemComponent } from './pages/books-list/books-list-item/books-list-item.component';
 import { PositiveNumbersDirective } from './pages/pipes/positive-numbers.directive';
+import { BooksListFormComponent } from './pages/books-list/books-list-form/books-list-form.component';
+import { OrderByPipe } from './pages/books-list/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PositiveNumbersDirective } from './pages/pipes/positive-numbers.directi
     FormBlockComponent,
     BooksListComponent,
     BooksListItemComponent,
-    PositiveNumbersDirective
+    PositiveNumbersDirective,
+    BooksListFormComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

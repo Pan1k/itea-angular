@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { IBook, IBookUpdate } from '../book.interface';
+import { IBook } from '../book.interface';
 
 @Component({
   selector: 'app-books-list-item',
@@ -11,7 +11,7 @@ export class BooksListItemComponent implements OnInit {
   @Input() book: IBook;
   @Input() bookIndex: number;
 
-  @Output() onUpdateBook = new EventEmitter<IBookUpdate>();
+  @Output() onShowEditForm = new EventEmitter<number>();
   @Output() onDeleteBook = new EventEmitter<number>();
 
   constructor() {
@@ -33,10 +33,7 @@ export class BooksListItemComponent implements OnInit {
   }
 
   updateBook(id: number) {
-    this.onUpdateBook.emit({
-      id,
-      book: this.book
-    })
+    this.onShowEditForm.emit(id);
   }
 
 }
