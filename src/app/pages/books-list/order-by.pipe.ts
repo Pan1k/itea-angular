@@ -7,7 +7,7 @@ import { IBook } from './book.interface';
 export class OrderByPipe implements PipeTransform {
 
   transform(value: Array<IBook>): Array<IBook> {
-    return value.reverse();
+    return value.sort((a, b) => b.id - a.id );
   }
 
 }
