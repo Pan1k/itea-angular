@@ -48,9 +48,12 @@
       </div>
       <div class="form-row">
         <label for="UserPhone1">Телефон:</label>
-        <input id="UserPhone1" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" required />
-        <span class="message error" [hidden]="phone.valid || phone.pristine">
+        <input id="UserPhone1" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" pattern="^\+38\d{3}\d{7}$" required />
+        <span class="message error" *ngIf="phone.errors?.['required'] && !phone.pristine">
           поле "Phone" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="phone.errors?.['pattern'] && !phone.pristine">
+          поле "Phone" должно быть в формате +38XXXXXXXXXX
         </span>
       </div>
       <div class="form-row">
@@ -63,10 +66,16 @@
       </div>
       <div class="form-row">
         <label for="UserDescription1">Описание:</label>
-        <textarea id="UserDescription1" [(ngModel)]="user.description" name="description"></textarea>
+        <textarea id="UserDescription1" [(ngModel)]="user.description" name="description" #description="ngModel" minlength="30" required></textarea>
+        <span class="message error" *ngIf="description.errors?.['required'] && !description.pristine">
+          поле "Описание" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="description.errors?.['minlength'] && !description.pristine">
+          поле "Описание" не должно быть меньше 30 симполов
+        </span>
       </div>
       <div class="form-buttons">
-        <button type="submit" >Send</button>
+        <button type="submit" [disabled]="userForm.invalid">Send</button>
       </div>
     </form>
   </div>
