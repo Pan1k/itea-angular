@@ -3,7 +3,18 @@
     <form #userForm="ngForm" (ngSubmit)="onFormSubmit($event)">
       <div class="form-row">
         <label for="UserName1">Имя:</label>
-        <input id="UserName1" type="text" [(ngModel)]="user.name" name="name" #name="ngModel" required minlength="2" maxlength="15" pattern="[a-zA-Zа-яА-Я]*" />
+        <input
+          id="UserName1"
+          [ngClass]="name.invalid && !name.pristine ? 'error' : ''"
+          type="text" [(ngModel)]="user.name"
+          name="name"
+          #name="ngModel"
+          required
+          appForbiddenName="John"
+          minlength="2"
+          maxlength="15"
+          pattern="[a-zA-Zа-яА-Я]*"
+        />
         <span class="message error" *ngIf="name.errors?.['required'] && !name.pristine">
           поле "Имя" не должно быть пустым
         </span>
@@ -16,10 +27,13 @@
         <span class="message error" *ngIf="name.errors?.['pattern'] && !name.errors?.['minlength'] && !name.pristine">
           поле "Имя" может включать только буквы лат/рус алфавита
         </span>
+        <span class="message error" *ngIf="name.errors?.['forbiddenName'] && !name.errors?.['minlength'] && !name.pristine">
+          поле "Имя" не может быть John
+        </span>
       </div>
       <div class="form-row">
         <label for="UserUsername1">Username:</label>
-        <input id="UserUsername1" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required minlength="4" maxlength="50" />
+        <input id="UserUsername1" [ngClass]="username.invalid && !username.pristine ? 'error' : ''" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required minlength="4" maxlength="50" />
         <span class="message error" *ngIf="username.errors?.['required'] && !username.pristine">
           поле "Username" не должно быть пустым
         </span>
@@ -32,13 +46,13 @@
       </div>
       <div class="form-row">
         <label for="UserAge1">Возраст:</label>
-        <input id="UserAge1" type="number" [(ngModel)]="user.age" name="age" #age="ngModel" min="18" max="40" />
+        <input id="UserAge1" [ngClass]="age.invalid && !age.pristine ? 'error' : ''" type="number" [(ngModel)]="user.age" name="age" #age="ngModel" min="18" max="40" />
         <span class="message error" *ngIf="age.errors?.['min'] && !age.pristine">Минимальный возраст 18</span>
         <span class="message error" *ngIf="age.errors?.['max'] && !age.pristine">Максимальный возраст 40</span>
       </div>
       <div class="form-row">
         <label for="UserEmail1">Email:</label>
-        <input id="UserEmail1" type="text" [(ngModel)]="user.email" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required />
+        <input id="UserEmail1" [ngClass]="email.invalid && !email.pristine ? 'error' : ''" type="text" [(ngModel)]="user.email" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required />
         <span class="message error" *ngIf="email.errors?.['required'] && !email.pristine">
           поле "Email" не должно быть пустым
         </span>
@@ -48,7 +62,10 @@
       </div>
       <div class="form-row">
         <label for="UserPhone1">Телефон:</label>
-        <input id="UserPhone1" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" pattern="^\+38\d{3}\d{7}$" required />
+        <input id="UserPhone1" [ngClass]="phone.invalid && !phone.pristine ? 'error' : ''" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" pattern="^\+38\d{3}\d{7}$" required />
+        <span class="message error" *ngIf="phone.errors?.['required'] && !phone.pristine">
+          поле "Phone" не должно быть пустым
+        </span>
         <span class="message error" *ngIf="phone.errors?.['required'] && !phone.pristine">
           поле "Phone" не должно быть пустым
         </span>
@@ -66,7 +83,7 @@
       </div>
       <div class="form-row">
         <label for="UserDescription1">Описание:</label>
-        <textarea id="UserDescription1" [(ngModel)]="user.description" name="description" #description="ngModel" minlength="30" required></textarea>
+        <textarea id="UserDescription1" [ngClass]="description.invalid && !description.pristine ? 'error' : ''" [(ngModel)]="user.description" name="description" #description="ngModel" minlength="30" required></textarea>
         <span class="message error" *ngIf="description.errors?.['required'] && !description.pristine">
           поле "Описание" не должно быть пустым
         </span>
@@ -80,49 +97,85 @@
     </form>
   </div>
   <div class="forms-container__column">
-    <form #userForm="ngForm" (ngSubmit)="onFormSubmit($event)">
+    <form [formGroup]="userReactiveForm" (ngSubmit)="onFormSubmit($event)">
       <div class="form-row">
         <label for="UserName2">Имя:</label>
-        <input id="UserName2" type="text" [(ngModel)]="user.name" name="name" #name="ngModel" required />
-        <span class="message">Some message</span>
+        <input id="UserName2" [ngClass]="getValidationClass('name')" type="text" formControlName="name" />
+        <span class="message error" *ngIf="checkValidation('name', 'required')">
+          поле "Имя" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'minLength')">
+          поле "Имя" не должно быть меньше 2 симполов
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'maxlength')">
+          поле "Имя" не должно быть больше 15 симполов
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'pattern') && !userReactiveForm.controls.name.errors?.['minlength']">
+          поле "Имя" может включать только буквы лат/рус алфавита
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'forbiddenName') && !userReactiveForm.controls.name.errors?.['minlength']">
+          поле "Имя" не может быть John
+        </span>
       </div>
       <div class="form-row">
         <label for="UserUsername2">Username:</label>
-        <input id="UserUsername2" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required />
-        <span class="message">Some message</span>
+        <input id="UserUsername2" [ngClass]="getValidationClass('username')" type="text" formControlName="username" />
+        <span class="message error" *ngIf="checkValidation('username', 'required')">
+          поле "Username" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'minLength')">
+          поле "Username" не должно быть меньше 4 симполов
+        </span>
+        <span class="message error" *ngIf="checkValidation('name', 'maxLength')">
+          поле "Username" не должно быть больше 50 симполов
+        </span>
       </div>
       <div class="form-row">
         <label for="UserAge2">Возраст:</label>
-        <input id="UserAge2" type="number" min="18" max="40" [(ngModel)]="user.age" name="age" />
-        <span class="message">Some message</span>
+        <input id="UserAge2" [ngClass]="getValidationClass('age')" type="number" formControlName="age" />
+        <span class="message error" *ngIf="checkValidation('age', 'min')">Минимальный возраст 18</span>
+        <span class="message error" *ngIf="checkValidation('age', 'max')">Максимальный возраст 40</span>
       </div>
       <div class="form-row">
         <label for="UserEmail2">Email:</label>
-        <input id="UserEmail2" type="text" [(ngModel)]="user.email" name="email" #email="ngModel" required />
-        <span class="message">Some message</span>
+        <input id="UserEmail2" [ngClass]="getValidationClass('email')" type="text" formControlName="email" />
+        <span class="message error" *ngIf="checkValidation('email', 'required')">
+          поле "Email" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="checkValidation('email', 'pattern')">
+          поле "Email" должно быть правильного формата
+        </span>
       </div>
       <div class="form-row">
         <label for="UserPhone2">Телефон:</label>
-        <input id="UserPhone2" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" required />
-        <span class="message"></span>
+        <input id="UserPhone2" [ngClass]="getValidationClass('phone')" type="text" formControlName="phone" />
+        <span class="message error" *ngIf="checkValidation('phone', 'required')">
+          поле "Phone" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="checkValidation('phone', 'pattern')">
+          поле "Phone" должно быть в формате +38XXXXXXXXXX
+        </span>
       </div>
       <div class="form-row">
         <label for="UserWebsite2">Веб-сайт:</label>
-        <input id="UserWebsite2" type="text" [(ngModel)]="user.website" name="website" />
-        <span class="message">Some message</span>
+        <input id="UserWebsite2" type="text" formControlName="website" />
       </div>
       <div class="form-row">
         <label for="UserCompany2">Компания:</label>
-        <input id="UserCompany2" type="text" [(ngModel)]="user.company" name="company" />
-        <span class="message">Some message</span>
+        <input id="UserCompany2" type="text" formControlName="company" />
       </div>
       <div class="form-row">
         <label for="UserDescription2">Описание:</label>
-        <textarea id="UserDescription2" [(ngModel)]="user.description" name="description"></textarea>
-        <span class="message">Some message</span>
+        <textarea id="UserDescription2" [ngClass]="getValidationClass('description')" formControlName="description"></textarea>
+        <span class="message error" *ngIf="checkValidation('description', 'required')">
+          поле "Описание" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="checkValidation('description', 'minLength')">
+          поле "Описание" не должно быть меньше 30 симполов
+        </span>
       </div>
       <div class="form-buttons">
-        <button type="submit" [disabled]="">Send</button>
+        <button type="submit" [disabled]="!userReactiveForm.invalid">Send</button>
       </div>
     </form>
   </div>

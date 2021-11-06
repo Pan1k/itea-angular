@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { FaqComponent } from './pages/faq/faq.component';
@@ -23,7 +23,8 @@ import { BooksListFormComponent } from './pages/books-list/books-list-form/books
 import { OrderByPipe } from './pages/books-list/order-by.pipe';
 import { FormsComponent } from './pages/forms/forms.component';
 import { UsersComponent } from './pages/users/users.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { ForbiddenValidatorDirective } from './pages/forms/forbidden-name.directive';
 
 @NgModule({
   declarations: [
@@ -45,13 +46,15 @@ import {HttpClientModule} from "@angular/common/http";
     BooksListFormComponent,
     OrderByPipe,
     FormsComponent,
-    UsersComponent
+    UsersComponent,
+    ForbiddenValidatorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
