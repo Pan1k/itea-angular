@@ -93,6 +93,7 @@
       </div>
       <div class="form-buttons">
         <button type="submit" [disabled]="userForm.invalid">Send</button>
+        <button (click)="userForm.resetForm()">Reset</button>
       </div>
     </form>
   </div>
@@ -175,7 +176,8 @@
         </span>
       </div>
       <div class="form-buttons">
-        <button type="submit" [disabled]="!userReactiveForm.invalid">Send</button>
+        <button type="submit" [disabled]="userReactiveForm.invalid">Send</button>
+        <button (click)="resetForm()">Reset</button>
       </div>
     </form>
   </div>

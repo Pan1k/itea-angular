@@ -49,7 +49,7 @@ export class FormsComponent implements OnInit {
       ]],
       "email": [this.user.email, [
         Validators.required,
-        Validators.pattern('a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')
       ]],
       "phone": [this.user.phone, [
         Validators.required,
@@ -81,6 +81,10 @@ export class FormsComponent implements OnInit {
 
   checkValidation(field: string, param: string): boolean {
     return this.userReactiveForm.controls[field].errors?.[param] && !this.userReactiveForm.controls[field].pristine;
+  }
+
+  resetForm() {
+    this.userReactiveForm.reset();
   }
 
 }
