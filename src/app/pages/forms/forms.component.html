@@ -1,0 +1,120 @@
+<div class="forms-container">
+  <div class="forms-container__column">
+    <form #userForm="ngForm" (ngSubmit)="onFormSubmit($event)">
+      <div class="form-row">
+        <label for="UserName1">Имя:</label>
+        <input id="UserName1" type="text" [(ngModel)]="user.name" name="name" #name="ngModel" required minlength="2" maxlength="15" pattern="[a-zA-Zа-яА-Я]*" />
+        <span class="message error" *ngIf="name.errors?.['required'] && !name.pristine">
+          поле "Имя" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="name.errors?.['minlength'] && !name.pristine">
+          поле "Имя" не должно быть меньше 2 симполов
+        </span>
+        <span class="message error" *ngIf="name.errors?.['maxlength'] && !name.pristine">
+          поле "Имя" не должно быть больше 15 симполов
+        </span>
+        <span class="message error" *ngIf="name.errors?.['pattern'] && !name.errors?.['minlength'] && !name.pristine">
+          поле "Имя" может включать только буквы лат/рус алфавита
+        </span>
+      </div>
+      <div class="form-row">
+        <label for="UserUsername1">Username:</label>
+        <input id="UserUsername1" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required minlength="4" maxlength="50" />
+        <span class="message error" *ngIf="username.errors?.['required'] && !username.pristine">
+          поле "Username" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="username.errors?.['minlength'] && !username.pristine">
+          поле "Username" не должно быть меньше 4 симполов
+        </span>
+        <span class="message error" *ngIf="username.errors?.['maxlength'] && !username.pristine">
+          поле "Username" не должно быть больше 50 симполов
+        </span>
+      </div>
+      <div class="form-row">
+        <label for="UserAge1">Возраст:</label>
+        <input id="UserAge1" type="number" [(ngModel)]="user.age" name="age" #age="ngModel" min="18" max="40" />
+        <span class="message error" *ngIf="age.errors?.['min'] && !age.pristine">Минимальный возраст 18</span>
+        <span class="message error" *ngIf="age.errors?.['max'] && !age.pristine">Максимальный возраст 40</span>
+      </div>
+      <div class="form-row">
+        <label for="UserEmail1">Email:</label>
+        <input id="UserEmail1" type="text" [(ngModel)]="user.email" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required />
+        <span class="message error" *ngIf="email.errors?.['required'] && !email.pristine">
+          поле "Email" не должно быть пустым
+        </span>
+        <span class="message error" *ngIf="email.errors?.['pattern'] && !email.pristine">
+          поле "Email" должно быть правильного формата
+        </span>
+      </div>
+      <div class="form-row">
+        <label for="UserPhone1">Телефон:</label>
+        <input id="UserPhone1" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" required />
+        <span class="message error" [hidden]="phone.valid || phone.pristine">
+          поле "Phone" не должно быть пустым
+        </span>
+      </div>
+      <div class="form-row">
+        <label for="UserWebsite1">Веб-сайт:</label>
+        <input id="UserWebsite1" type="text" [(ngModel)]="user.website" name="website" />
+      </div>
+      <div class="form-row">
+        <label for="UserCompany1">Компания:</label>
+        <input id="UserCompany1" type="text" [(ngModel)]="user.company" name="company" />
+      </div>
+      <div class="form-row">
+        <label for="UserDescription1">Описание:</label>
+        <textarea id="UserDescription1" [(ngModel)]="user.description" name="description"></textarea>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" >Send</button>
+      </div>
+    </form>
+  </div>
+  <div class="forms-container__column">
+    <form #userForm="ngForm" (ngSubmit)="onFormSubmit($event)">
+      <div class="form-row">
+        <label for="UserName2">Имя:</label>
+        <input id="UserName2" type="text" [(ngModel)]="user.name" name="name" #name="ngModel" required />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserUsername2">Username:</label>
+        <input id="UserUsername2" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserAge2">Возраст:</label>
+        <input id="UserAge2" type="number" min="18" max="40" [(ngModel)]="user.age" name="age" />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserEmail2">Email:</label>
+        <input id="UserEmail2" type="text" [(ngModel)]="user.email" name="email" #email="ngModel" required />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserPhone2">Телефон:</label>
+        <input id="UserPhone2" type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel" required />
+        <span class="message"></span>
+      </div>
+      <div class="form-row">
+        <label for="UserWebsite2">Веб-сайт:</label>
+        <input id="UserWebsite2" type="text" [(ngModel)]="user.website" name="website" />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserCompany2">Компания:</label>
+        <input id="UserCompany2" type="text" [(ngModel)]="user.company" name="company" />
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-row">
+        <label for="UserDescription2">Описание:</label>
+        <textarea id="UserDescription2" [(ngModel)]="user.description" name="description"></textarea>
+        <span class="message">Some message</span>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" [disabled]="">Send</button>
+      </div>
+    </form>
+  </div>
+</div>

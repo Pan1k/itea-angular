@@ -1,0 +1,52 @@
+.forms-container {
+  display: flex;
+  justify-content: center;
+
+  &__column {
+    width: 350px;
+    margin: 0 20px;
+  }
+}
+
+form {
+  max-width: 450px;
+  margin: 0 auto;
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 7px;
+    padding-bottom: 18px;
+
+    label {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    input, textarea, select {
+      padding: 4px 8px;
+    }
+
+    .message {
+      position: absolute;
+      bottom: 0;
+      font-size: 12px;
+
+      &.error {
+        color: #b03535;
+      }
+    }
+  }
+
+  .form-buttons {
+    margin-top: 30px;
+
+    button {
+      padding: 8px 15px;
+      min-width: 250px;
+      width: 100%;
+    }
+  }
+}
